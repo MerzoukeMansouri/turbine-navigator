@@ -4,11 +4,13 @@ A Chrome extension for quick navigation between Turbine environments and namespa
 
 ## Features
 
-- Automatically tracks visited Turbine environments
-- Keyboard shortcut (Ctrl+Shift+T / Cmd+Shift+T) to open popup
-- Quick environment switching with badges (dev, int, qa, prep, staging, prod)
-- Recent environments list with timestamps
-- All data stored locally (no backend required)
+- 🔍 **Real-time search** - Filter namespaces instantly as you type
+- 🎯 **Smart environment detection** - Automatically detects if a service uses `qa` or `uat1` and shows only relevant badges
+- 🚀 **Quick environment switching** - One-click navigation between dev, sit, uat1/qa, prep, and prod
+- ⌨️ **Keyboard shortcut** - Press `Ctrl+M` (Windows/Linux) or `Cmd+M` (Mac) to open popup
+- 📝 **Automatic tracking** - Tracks visited Turbine environments automatically
+- ⏱️ **Recent history** - Shows last visited time for each namespace
+- 💾 **Local storage** - All data stored locally (no backend required)
 
 ## Development Setup
 
@@ -22,7 +24,10 @@ npm install
 npm run build
 ```
 
-This will create a `dist` folder with the compiled extension.
+This will:
+- Compile TypeScript and React code
+- Copy static assets (manifest.json, icons) to the `dist` folder
+- Generate a production-ready extension in the `dist` directory
 
 ## Loading the Extension in Chrome
 
@@ -37,16 +42,23 @@ This will create a `dist` folder with the compiled extension.
 ### Automatic Tracking
 - Visit any Turbine environment URL (e.g., `https://turbine.adeo.cloud/environments/cdp-service-offer-builder-prep/view/DEPLOYMENTS`)
 - The extension automatically tracks it in your recent environments
+- Smart detection: If you visit a `-qa` or `-uat1` environment, the extension remembers which one the service uses
 
 ### Opening the Popup
 - Click the extension icon in the toolbar, OR
-- Use keyboard shortcut: `Ctrl+Shift+T` (Windows/Linux) or `Cmd+Shift+T` (Mac)
+- Use keyboard shortcut: `Ctrl+M` (Windows/Linux) or `Cmd+M` (Mac)
+
+### Searching
+- The search box appears at the top when you have tracked environments
+- Start typing to filter namespaces in real-time
+- Search is case-insensitive
+- Click the × button to clear the search
 
 ### Navigating Environments
 - Click on a namespace name to open it in the current tab
-- Click on an environment badge to switch to that environment
-- Hold Ctrl/Cmd while clicking to open in a new tab
-- Click the × button to remove an environment from history
+- Click on an environment badge (dev, sit, qa/uat1, prep, prod) to switch to that environment
+- Hold Ctrl/Cmd while clicking a badge to open in a new tab
+- Click the × button next to a namespace to remove it from history
 - Click "Clear All" to remove all tracked environments
 
 ## Development
@@ -84,19 +96,16 @@ turbine-chrome-extension/
 └── dist/                   # Build output (generated)
 ```
 
-## Adding Icons
-
-Place your icon files in `public/icons/`:
-- `icon16.png` (16x16)
-- `icon48.png` (48x48)
-- `icon128.png` (128x128)
-
-If you don't have icons yet, you can remove the icons section from `public/manifest.json` temporarily.
-
 ## Technologies
 
 - React 18
 - TypeScript
-- Vite
+- Vite (with vite-plugin-static-copy for assets)
 - Chrome Extension Manifest V3
 - Chrome Storage API
+
+## Tips
+
+- **First-time setup**: After installing, visit a few Turbine environments ending in `-qa` or `-uat1` to establish preferences for each service
+- **Clear old data**: If you upgraded from an older version, click "Clear All" and revisit your environments to benefit from the smart qa/uat1 detection
+- **Keyboard workflow**: Press `Ctrl+M`, start typing to search, then use environment badges to switch quickly
