@@ -27,13 +27,61 @@ body {
   align-items: center;
   padding: 16px;
   border-bottom: 1px solid #e5e7eb;
-  background: #f9fafb;
+  background: linear-gradient(135deg, #f9fafb 0%, #f9fafb 100%);
+  animation: headerGradient 2.5s ease-out forwards;
+}
+
+@keyframes headerGradient {
+  to {
+    background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+  }
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  animation: collapseGap 0.5s 0.3s ease-in forwards;
+}
+
+@keyframes collapseGap {
+  to {
+    gap: 0px;
+  }
+}
+
+.header-logo {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  animation: rocketLaunch 0.8s ease-in forwards, hideRocket 0s 0.8s forwards;
+}
+
+@keyframes rocketLaunch {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+}
+
+@keyframes hideRocket {
+  to {
+    width: 0;
+    height: 0;
+    overflow: hidden;
+  }
 }
 
 .header h1 {
   font-size: 18px;
   font-weight: 600;
   color: #111827;
+  margin: 0;
+  transition: transform 0.4s ease-in-out;
 }
 
 .clear-btn {
@@ -44,11 +92,27 @@ body {
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: background 0.2s, transform 0.1s;
+  animation: fadeInRight 0.2s ease-out;
 }
 
 .clear-btn:hover {
   background: #dc2626;
+}
+
+.clear-btn:active {
+  transform: scale(0.95);
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 .empty-state {

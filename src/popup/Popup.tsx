@@ -85,7 +85,14 @@ const Popup: React.FC = () => {
   return (
     <div className="popup">
       <div className="header">
-        <h1>Turbine Navigator</h1>
+        <div className="header-left">
+          <img
+            src="/icons/icon48.png"
+            alt="Turbine Navigator"
+            className="header-logo"
+          />
+          <h1>Turbine Navigator</h1>
+        </div>
         {environments.length > 0 && (
           <button className="clear-btn" onClick={clearAll} title="Clear all">
             Clear All
