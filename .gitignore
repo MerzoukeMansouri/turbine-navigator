@@ -17,6 +17,7 @@ dist/
 # OS
 .DS_Store
 Thumbs.db
+__MACOSX
 
 # Logs
 *.log
