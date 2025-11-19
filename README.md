@@ -104,6 +104,40 @@ turbine-chrome-extension/
 - Chrome Extension Manifest V3
 - Chrome Storage API
 
+## Release Process
+
+This project uses [semantic-release](https://semantic-release.gitbook.io/) for automated versioning and releases.
+
+### Commit Message Convention
+
+Follow the [Conventional Commits](https://www.conventionalcommits.org/) specification:
+
+- `feat:` - New feature (triggers minor version bump)
+- `fix:` - Bug fix (triggers patch version bump)
+- `docs:` - Documentation changes (no release)
+- `chore:` - Maintenance tasks (no release)
+- `refactor:` - Code refactoring (no release)
+- `perf:` - Performance improvements (triggers patch version bump)
+- `BREAKING CHANGE:` - Breaking changes (triggers major version bump)
+
+**Examples:**
+```
+feat: add search filtering by environment type
+fix: resolve keyboard shortcut conflict on macOS
+docs: update installation instructions
+chore: update dependencies
+```
+
+### Automated Release
+
+When you push to `main`, GitHub Actions will:
+1. Build the extension
+2. Analyze commits since the last release
+3. Determine the next version number
+4. Update `package.json`, `manifest.json`, and `CHANGELOG.md`
+5. Create a Git tag and GitHub release
+6. Attach a `.zip` file of the extension to the release
+
 ## Tips
 
 - **First-time setup**: After installing, visit a few Turbine environments ending in `-qa` or `-uat1` to establish preferences for each service

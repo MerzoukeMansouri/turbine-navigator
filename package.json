@@ -13,10 +13,14 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/exec": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
     "@types/chrome": "^0.0.254",
     "@types/react": "^18.2.45",
     "@types/react-dom": "^18.2.18",
     "@vitejs/plugin-react": "^4.2.1",
+    "semantic-release": "^23.0.0",
     "typescript": "^5.3.3",
     "vite": "^5.0.8",
     "vite-plugin-static-copy": "^3.1.4"

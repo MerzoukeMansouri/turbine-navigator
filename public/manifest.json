@@ -17,7 +17,12 @@
   },
   "action": {
     "default_popup": "src/popup/index.html",
-    "default_title": "Turbine Navigator"
+    "default_title": "Turbine Navigator",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
   },
   "commands": {
     "_execute_action": {
