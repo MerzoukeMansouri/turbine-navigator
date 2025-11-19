@@ -16,12 +16,12 @@ A Chrome extension for quick navigation between Turbine environments and namespa
 
 1. Install dependencies:
 ```bash
-npm install
+pnpm install
 ```
 
 2. Build the extension:
 ```bash
-npm run build
+pnpm run build
 ```
 
 This will:
@@ -65,12 +65,12 @@ This will:
 
 ### Run in development mode:
 ```bash
-npm run dev
+pnpm run dev
 ```
 
 ### Build for production:
 ```bash
-npm run build
+pnpm run build
 ```
 
 ## Project Structure
@@ -108,4 +108,4 @@ turbine-chrome-extension/
 
 - **First-time setup**: After installing, visit a few Turbine environments ending in `-qa` or `-uat1` to establish preferences for each service
 - **Clear old data**: If you upgraded from an older version, click "Clear All" and revisit your environments to benefit from the smart qa/uat1 detection
-- **Keyboard workflow**: Press `Ctrl+M`, start typing to search, then use environment badges to switch quickly
+- **Keyboard workflow**: Press `Ctrl+B` (or `Cmd+B` on Mac), start typing to search, then use environment badges to switch quickly
