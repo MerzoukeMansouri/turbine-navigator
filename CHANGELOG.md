@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/MerzoukeMansouri/turbine-navigator/compare/v1.0.0...v1.1.0) (2025-11-19)
+
+
+### Features
+
+* enhance popup header with gradient and animations ([6625d69](https://github.com/MerzoukeMansouri/turbine-navigator/commit/6625d691958ecb82ad96f080ceab6f8d0752b4a9))
+
 # 1.0.0 (2025-11-19)
 
 
