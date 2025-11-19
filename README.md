@@ -46,7 +46,7 @@ This will:
 
 ### Opening the Popup
 - Click the extension icon in the toolbar, OR
-- Use keyboard shortcut: `Ctrl+M` (Windows/Linux) or `Cmd+M` (Mac)
+- Use keyboard shortcut: `Ctrl+B` (Windows/Linux) or `Cmd+B` (Mac)
 
 ### Searching
 - The search box appears at the top when you have tracked environments

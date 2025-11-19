@@ -169,7 +169,7 @@ const Popup: React.FC = () => {
       )}
 
       <div className="footer">
-        <small>Press Ctrl+M (Cmd+M on Mac) to open</small>
+        <small>Press Ctrl+B (Cmd+B on Mac) to open</small>
       </div>
     </div>
   );
