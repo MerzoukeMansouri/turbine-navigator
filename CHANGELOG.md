@@ -1,3 +1,11 @@
+# [1.2.0](https://github.com/MerzoukeMansouri/turbine-navigator/compare/v1.1.0...v1.2.0) (2025-11-24)
+
+
+### Features
+
+* ** tes.txt:** add new test file ([4325aaa](https://github.com/MerzoukeMansouri/turbine-navigator/commit/4325aaaa3605a147b8c68d549f4d1fc07fa2ec66))
+* remove unused tes.txt file ([b5e59a7](https://github.com/MerzoukeMansouri/turbine-navigator/commit/b5e59a780df657c1df0d1d4611d4461b694e2016))
+
 # [1.1.0](https://github.com/MerzoukeMansouri/turbine-navigator/compare/v1.0.0...v1.1.0) (2025-11-19)
 
 
