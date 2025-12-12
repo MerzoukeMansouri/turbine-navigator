@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/MerzoukeMansouri/turbine-navigator/compare/v1.2.0...v1.3.0) (2025-12-12)
+
+
+### Features
+
+* **process-logo.sh:** add script to process logo and create multiple icon sizes ([ee261e9](https://github.com/MerzoukeMansouri/turbine-navigator/commit/ee261e9493b8d40865fedf4440c609826a64613d))
+
 # [1.2.0](https://github.com/MerzoukeMansouri/turbine-navigator/compare/v1.1.0...v1.2.0) (2025-11-24)
 
 
