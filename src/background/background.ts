@@ -1,11 +1,12 @@
 import { parseTurbineUrl } from '../utils/urlParser';
-import { storage } from '../utils/storage';
+import { storage, settings } from '../utils/storage';
 
 // Listen for tab updates to track visited Turbine URLs
-chrome.tabs.onUpdated.addListener((_tabId, changeInfo, tab) => {
+chrome.tabs.onUpdated.addListener(async (_tabId, changeInfo, tab) => {
   // Only process when the page has finished loading
   if (changeInfo.status === 'complete' && tab.url) {
-    const turbineEnv = parseTurbineUrl(tab.url);
+    const baseUrl = await settings.getBaseUrl();
+    const turbineEnv = parseTurbineUrl(tab.url, baseUrl);
 
     if (turbineEnv) {
       console.log('Turbine environment detected:', turbineEnv);
@@ -19,7 +20,8 @@ chrome.tabs.onActivated.addListener(async (activeInfo) => {
   const tab = await chrome.tabs.get(activeInfo.tabId);
 
   if (tab.url) {
-    const turbineEnv = parseTurbineUrl(tab.url);
+    const baseUrl = await settings.getBaseUrl();
+    const turbineEnv = parseTurbineUrl(tab.url, baseUrl);
 
     if (turbineEnv) {
       console.log('Turbine environment activated:', turbineEnv);

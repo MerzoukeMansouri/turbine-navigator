@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "zip": "zip -r turbine-navigator.zip dist/*"
   },
   "dependencies": {
     "react": "^18.2.0",

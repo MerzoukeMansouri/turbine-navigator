@@ -132,6 +132,48 @@ body {
   color: #9ca3af;
 }
 
+.config-form {
+  display: flex;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.config-input {
+  flex: 1;
+  padding: 10px 12px;
+  font-size: 13px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  outline: none;
+  transition: border-color 0.2s;
+  font-family: inherit;
+}
+
+.config-input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.config-input::placeholder {
+  color: #9ca3af;
+}
+
+.config-save-btn {
+  padding: 10px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.config-save-btn:hover {
+  background: #1d4ed8;
+}
+
 .environments-list {
   overflow-y: auto;
   max-height: 480px;
@@ -236,12 +278,31 @@ body {
   padding: 12px 16px;
   border-top: 1px solid #e5e7eb;
   background: #f9fafb;
-  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .footer small {
   font-size: 11px;
   color: #9ca3af;
+}
+
+.settings-btn {
+  padding: 4px 10px;
+  font-size: 11px;
+  background: none;
+  color: #6b7280;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.settings-btn:hover {
+  border-color: #2563eb;
+  color: #2563eb;
+  background: #eff6ff;
 }
 
 /* Scrollbar styling */

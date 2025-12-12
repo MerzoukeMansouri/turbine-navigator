@@ -1,16 +1,46 @@
 import React, { useState, useEffect } from 'react';
-import { storage } from '../utils/storage';
+import { storage, settings } from '../utils/storage';
 import { buildTurbineUrl, buildNamespaceWithEnv } from '../utils/urlParser';
-import { TurbineEnvironment, ENVIRONMENTS } from '../types';
+import { TurbineEnvironment, ENVIRONMENTS, DEFAULT_BASE_URL } from '../types';
 
 const Popup: React.FC = () => {
   const [environments, setEnvironments] = useState<TurbineEnvironment[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
+  const [baseUrl, setBaseUrl] = useState('');
+  const [isConfigured, setIsConfigured] = useState(true);
+  const [urlInput, setUrlInput] = useState('');
 
   useEffect(() => {
-    loadEnvironments();
+    loadData();
   }, []);
+
+  const loadData = async () => {
+    try {
+      const [envs, url, configured] = await Promise.all([
+        storage.getRecentEnvironments(),
+        settings.getBaseUrl(),
+        settings.isConfigured()
+      ]);
+      setEnvironments(envs);
+      setBaseUrl(url);
+      setIsConfigured(configured);
+      setUrlInput(url);
+    } catch (error) {
+      console.error('Failed to load data:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const saveBaseUrl = async () => {
+    const normalizedUrl = urlInput.trim().replace(/\/+$/, '');
+    if (normalizedUrl) {
+      await settings.saveSettings({ baseUrl: normalizedUrl });
+      setBaseUrl(normalizedUrl);
+      setIsConfigured(true);
+    }
+  };
 
   const loadEnvironments = async () => {
     try {
@@ -18,8 +48,6 @@ const Popup: React.FC = () => {
       setEnvironments(envs);
     } catch (error) {
       console.error('Failed to load environments:', error);
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -34,8 +62,12 @@ const Popup: React.FC = () => {
 
   const navigateToEnv = (namespace: string, env: string, newTab: boolean = false) => {
     const fullNamespace = buildNamespaceWithEnv(namespace, env);
-    const url = buildTurbineUrl(fullNamespace);
+    const url = buildTurbineUrl(baseUrl, fullNamespace);
     openUrl(url, newTab);
+  };
+
+  const openSettings = () => {
+    chrome.runtime.openOptionsPage();
   };
 
   const removeEnvironment = async (id: string) => {
@@ -124,8 +156,30 @@ const Popup: React.FC = () => {
 
       {environments.length === 0 ? (
         <div className="empty-state">
-          <p>No recent environments</p>
-          <small>Visit a Turbine environment to get started</small>
+          {!isConfigured ? (
+            <>
+              <p>Configure Turbine URL</p>
+              <small>Enter your Turbine instance URL to get started</small>
+              <div className="config-form">
+                <input
+                  type="url"
+                  className="config-input"
+                  placeholder={DEFAULT_BASE_URL}
+                  value={urlInput}
+                  onChange={(e) => setUrlInput(e.target.value)}
+                  onKeyDown={(e) => e.key === 'Enter' && saveBaseUrl()}
+                />
+                <button className="config-save-btn" onClick={saveBaseUrl}>
+                  Save
+                </button>
+              </div>
+            </>
+          ) : (
+            <>
+              <p>No recent environments</p>
+              <small>Visit a Turbine environment to get started</small>
+            </>
+          )}
         </div>
       ) : filteredEnvironments.length === 0 ? (
         <div className="empty-state">
@@ -177,6 +231,9 @@ const Popup: React.FC = () => {
 
       <div className="footer">
         <small>Press Ctrl+B (Cmd+B on Mac) to open</small>
+        <button className="settings-btn" onClick={openSettings} title="Settings">
+          Settings
+        </button>
       </div>
     </div>
   );

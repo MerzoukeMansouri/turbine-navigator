@@ -2,15 +2,18 @@ import { TurbineEnvironment } from '../types';
 
 /**
  * Parses a Turbine URL and extracts namespace and environment information
- * Example URL: https://turbine.adeo.cloud/environments/cdp-service-offer-builder-prep/view/DEPLOYMENTS
+ * Example URL: https://turbine.example.com/environments/cdp-service-offer-builder-prep/view/DEPLOYMENTS
  * Pattern: /environments/{namespace}/...
+ * @param url - The URL to parse
+ * @param baseUrl - The configured Turbine base URL to match against
  */
-export function parseTurbineUrl(url: string): TurbineEnvironment | null {
+export function parseTurbineUrl(url: string, baseUrl: string): TurbineEnvironment | null {
   try {
     const urlObj = new URL(url);
+    const baseUrlObj = new URL(baseUrl);
 
-    // Check if it's a turbine.adeo.cloud URL
-    if (!urlObj.hostname.includes('turbine.adeo.cloud')) {
+    // Check if it's a matching Turbine URL
+    if (urlObj.hostname !== baseUrlObj.hostname) {
       return null;
     }
 
@@ -55,9 +58,12 @@ export function parseTurbineUrl(url: string): TurbineEnvironment | null {
 
 /**
  * Builds a Turbine URL for a given namespace and optional path
+ * @param baseUrl - The configured Turbine base URL
+ * @param namespace - The namespace to navigate to
+ * @param path - Optional path within the environment
  */
-export function buildTurbineUrl(namespace: string, path: string = 'view/DEPLOYMENTS'): string {
-  return `https://turbine.adeo.cloud/environments/${namespace}/${path}`;
+export function buildTurbineUrl(baseUrl: string, namespace: string, path: string = 'view/DEPLOYMENTS'): string {
+  return `${baseUrl}/environments/${namespace}/${path}`;
 }
 
 /**

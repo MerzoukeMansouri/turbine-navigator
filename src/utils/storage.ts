@@ -1,4 +1,4 @@
-import { TurbineEnvironment, STORAGE_KEY, MAX_RECENT_ITEMS } from '../types';
+import { TurbineEnvironment, TurbineSettings, STORAGE_KEY, SETTINGS_KEY, DEFAULT_BASE_URL, MAX_RECENT_ITEMS } from '../types';
 
 export const storage = {
   async getRecentEnvironments(): Promise<TurbineEnvironment[]> {
@@ -34,5 +34,26 @@ export const storage = {
 
   async clearAll(): Promise<void> {
     await chrome.storage.local.remove(STORAGE_KEY);
+  },
+};
+
+export const settings = {
+  async getSettings(): Promise<TurbineSettings> {
+    const result = await chrome.storage.local.get(SETTINGS_KEY);
+    return result[SETTINGS_KEY] || { baseUrl: DEFAULT_BASE_URL };
+  },
+
+  async isConfigured(): Promise<boolean> {
+    const result = await chrome.storage.local.get(SETTINGS_KEY);
+    return !!result[SETTINGS_KEY];
+  },
+
+  async saveSettings(newSettings: TurbineSettings): Promise<void> {
+    await chrome.storage.local.set({ [SETTINGS_KEY]: newSettings });
+  },
+
+  async getBaseUrl(): Promise<string> {
+    const s = await this.getSettings();
+    return s.baseUrl;
   },
 };
