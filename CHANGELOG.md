@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/MerzoukeMansouri/turbine-navigator/compare/v1.3.0...v1.4.0) (2025-12-12)
+
+
+### Features
+
+* add detailed testing guide for reduced permissions in Chrome extension ([7032b30](https://github.com/MerzoukeMansouri/turbine-navigator/commit/7032b30fea8105ab51afd8e8d142a05e41077f41))
+
 # [1.3.0](https://github.com/MerzoukeMansouri/turbine-navigator/compare/v1.2.0...v1.3.0) (2025-12-12)
 
 
