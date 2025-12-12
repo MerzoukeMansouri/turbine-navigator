@@ -5,11 +5,7 @@
   "description": "Quick navigation for Turbine environments and namespaces",
   "permissions": [
     "storage",
-    "tabs",
-    "activeTab"
-  ],
-  "host_permissions": [
-    "*://*/*"
+    "tabs"
   ],
   "background": {
     "service_worker": "background.js",
