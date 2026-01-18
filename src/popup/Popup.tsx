@@ -82,6 +82,12 @@ const Popup: React.FC = () => {
     }
   };
 
+  const openComponentsMatrix = () => {
+    chrome.tabs.create({
+      url: chrome.runtime.getURL('src/components-matrix/index.html'),
+    });
+  };
+
   const formatTimestamp = (timestamp: number) => {
     const now = Date.now();
     const diff = now - timestamp;
@@ -126,9 +132,18 @@ const Popup: React.FC = () => {
           <h1>Turbine Navigator</h1>
         </div>
         {environments.length > 0 && (
-          <button className="clear-btn" onClick={clearAll} title="Clear all">
-            Clear All
-          </button>
+          <div className="header-actions">
+            <button
+              className="components-btn"
+              onClick={openComponentsMatrix}
+              title="View component deployments"
+            >
+              Components
+            </button>
+            <button className="clear-btn" onClick={clearAll} title="Clear all">
+              Clear All
+            </button>
+          </div>
         )}
       </div>
 

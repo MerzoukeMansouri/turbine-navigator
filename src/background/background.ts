@@ -1,5 +1,7 @@
 import { parseTurbineUrl } from '../utils/urlParser';
 import { storage, settings } from '../utils/storage';
+import { componentStorage } from '../utils/componentStorage';
+import { ComponentDeployment } from '../types';
 
 // Listen for tab updates to track visited Turbine URLs
 chrome.tabs.onUpdated.addListener(async (_tabId, changeInfo, tab) => {
@@ -27,6 +29,26 @@ chrome.tabs.onActivated.addListener(async (activeInfo) => {
       console.log('Turbine environment activated:', turbineEnv);
       storage.addEnvironment(turbineEnv);
     }
+  }
+});
+
+// Listen for messages from content script
+chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
+  if (message.type === 'COMPONENT_DATA') {
+    const deployments = message.payload as ComponentDeployment[];
+    console.log('[Turbine Navigator] Received component data:', deployments.length, 'components');
+
+    componentStorage.saveComponentDeployments(deployments)
+      .then(() => {
+        console.log('[Turbine Navigator] Component data saved successfully');
+        sendResponse({ success: true });
+      })
+      .catch((error) => {
+        console.error('[Turbine Navigator] Error saving component data:', error);
+        sendResponse({ success: false, error: error.message });
+      });
+
+    return true; // Keep the message channel open for async response
   }
 });
 

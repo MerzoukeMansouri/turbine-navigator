@@ -21,13 +21,15 @@ export default defineConfig({
       input: {
         popup: resolve(__dirname, 'src/popup/index.html'),
         options: resolve(__dirname, 'src/options/index.html'),
+        componentsMatrix: resolve(__dirname, 'src/components-matrix/index.html'),
         background: resolve(__dirname, 'src/background/background.ts'),
+        content: resolve(__dirname, 'src/content/contentScript.ts'),
       },
       output: {
         entryFileNames: (chunkInfo) => {
-          return chunkInfo.name === 'background'
-            ? 'background.js'
-            : 'assets/[name]-[hash].js';
+          if (chunkInfo.name === 'background') return 'background.js';
+          if (chunkInfo.name === 'content') return 'content.js';
+          return 'assets/[name]-[hash].js';
         },
         chunkFileNames: 'assets/[name]-[hash].js',
         assetFileNames: 'assets/[name]-[hash].[ext]',

@@ -84,6 +84,32 @@ body {
   transition: transform 0.4s ease-in-out;
 }
 
+.header-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.components-btn {
+  padding: 6px 12px;
+  font-size: 12px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+  animation: fadeInRight 0.2s ease-out;
+}
+
+.components-btn:hover {
+  background: #1d4ed8;
+}
+
+.components-btn:active {
+  transform: scale(0.95);
+}
+
 .clear-btn {
   padding: 6px 12px;
   font-size: 12px;
