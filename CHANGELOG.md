@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/MerzoukeMansouri/turbine-navigator/compare/v1.4.0...v1.5.0) (2026-01-18)
+
+
+### Features
+
+* Add content script and manifest updates for Turbine Navigator components matrix ([e171e56](https://github.com/MerzoukeMansouri/turbine-navigator/commit/e171e561b9fd515ec1b94e5ca85e320bb7a175dc))
+
 # [1.4.0](https://github.com/MerzoukeMansouri/turbine-navigator/compare/v1.3.0...v1.4.0) (2025-12-12)
 
 

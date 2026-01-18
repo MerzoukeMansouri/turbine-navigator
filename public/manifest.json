@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Turbine Navigator",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "description": "Quick navigation for Turbine environments and namespaces",
   "permissions": [
     "storage",
@@ -13,8 +13,12 @@
   },
   "content_scripts": [
     {
-      "matches": ["https://*/environments/*/view/DEPLOYMENTS*"],
-      "js": ["content.js"],
+      "matches": [
+        "https://*/environments/*/view/DEPLOYMENTS*"
+      ],
+      "js": [
+        "content.js"
+      ],
       "run_at": "document_idle"
     }
   ],
