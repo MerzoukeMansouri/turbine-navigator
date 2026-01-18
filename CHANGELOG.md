@@ -1,3 +1,10 @@
+# [1.6.0](https://github.com/MerzoukeMansouri/turbine-navigator/compare/v1.5.0...v1.6.0) (2026-01-18)
+
+
+### Features
+
+* **ComponentsMatrix:** add namespace delete button and functionality ([0254a45](https://github.com/MerzoukeMansouri/turbine-navigator/commit/0254a45059f537659081fb202134471105376275))
+
 # [1.5.0](https://github.com/MerzoukeMansouri/turbine-navigator/compare/v1.4.0...v1.5.0) (2026-01-18)
 
 
