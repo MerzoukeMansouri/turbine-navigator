@@ -75,4 +75,10 @@ export const componentStorage = {
   async clearComponentData(): Promise<void> {
     await chrome.storage.local.remove(COMPONENT_DEPLOYMENTS_KEY);
   },
+
+  async deleteNamespace(namespace: string): Promise<void> {
+    const existing = await this.getComponentDeployments();
+    const filtered = existing.filter(deployment => deployment.namespace !== namespace);
+    await chrome.storage.local.set({ [COMPONENT_DEPLOYMENTS_KEY]: filtered });
+  },
 };

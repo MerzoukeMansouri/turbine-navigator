@@ -159,6 +159,13 @@ const ComponentsMatrix: React.FC = () => {
     saveVisibleEnvironments(allEnvs);
   };
 
+  const deleteNamespace = async (namespace: string) => {
+    if (confirm(`Delete all component data for "${namespace}"?`)) {
+      await componentStorage.deleteNamespace(namespace);
+      await loadData();
+    }
+  };
+
   if (loading) {
     return (
       <div className="matrix-container">
@@ -221,17 +228,27 @@ const ComponentsMatrix: React.FC = () => {
 
           return (
             <div key={nsData.namespace} className="accordion-item">
-              <div
-                className="accordion-header"
-                onClick={() => toggleNamespace(nsData.namespace)}
-              >
-                <div className="accordion-title">
+              <div className="accordion-header">
+                <div
+                  className="accordion-title"
+                  onClick={() => toggleNamespace(nsData.namespace)}
+                >
                   <span className="accordion-icon">{isExpanded ? '▼' : '▶'}</span>
                   <span className="accordion-namespace">{nsData.namespace}</span>
                   <span className="accordion-count">
                     {nsData.components.length} component{nsData.components.length !== 1 ? 's' : ''}
                   </span>
                 </div>
+                <button
+                  className="namespace-delete-btn"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    deleteNamespace(nsData.namespace);
+                  }}
+                  title="Delete namespace"
+                >
+                  ×
+                </button>
               </div>
 
               {isExpanded && (
