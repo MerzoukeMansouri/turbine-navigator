@@ -7,7 +7,7 @@ A Chrome extension for quick navigation between Turbine environments and namespa
 - 🔍 **Real-time search** - Filter namespaces instantly as you type
 - 🎯 **Smart environment detection** - Automatically detects if a service uses `qa` or `uat1` and shows only relevant badges
 - 🚀 **Quick environment switching** - One-click navigation between dev, sit, uat1/qa, prep, and prod
-- ⌨️ **Keyboard shortcut** - Press `Ctrl+M` (Windows/Linux) or `Cmd+M` (Mac) to open popup
+- ⌨️ **Keyboard shortcut** - Press `Ctrl+K` (Windows/Linux) or `Cmd+K` (Mac) to open popup
 - 📝 **Automatic tracking** - Tracks visited Turbine environments automatically
 - ⏱️ **Recent history** - Shows last visited time for each namespace
 - 💾 **Local storage** - All data stored locally (no backend required)
@@ -46,7 +46,7 @@ This will:
 
 ### Opening the Popup
 - Click the extension icon in the toolbar, OR
-- Use keyboard shortcut: `Ctrl+B` (Windows/Linux) or `Cmd+B` (Mac)
+- Use keyboard shortcut: `Ctrl+K` (Windows/Linux) or `Cmd+K` (Mac)
 
 ### Searching
 - The search box appears at the top when you have tracked environments
@@ -142,4 +142,4 @@ When you push to `main`, GitHub Actions will:
 
 - **First-time setup**: After installing, visit a few Turbine environments ending in `-qa` or `-uat1` to establish preferences for each service
 - **Clear old data**: If you upgraded from an older version, click "Clear All" and revisit your environments to benefit from the smart qa/uat1 detection
-- **Keyboard workflow**: Press `Ctrl+B` (or `Cmd+B` on Mac), start typing to search, then use environment badges to switch quickly
+- **Keyboard workflow**: Press `Ctrl+K` (or `Cmd+K` on Mac), start typing to search, then use environment badges to switch quickly

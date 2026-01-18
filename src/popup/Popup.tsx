@@ -230,7 +230,7 @@ const Popup: React.FC = () => {
       )}
 
       <div className="footer">
-        <small>Press Ctrl+B (Cmd+B on Mac) to open</small>
+        <small>Press Ctrl+K (Cmd+K on Mac) to open</small>
         <button className="settings-btn" onClick={openSettings} title="Settings">
           Settings
         </button>
