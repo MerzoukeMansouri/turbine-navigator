@@ -11,7 +11,6 @@ chrome.tabs.onUpdated.addListener(async (_tabId, changeInfo, tab) => {
     const turbineEnv = parseTurbineUrl(tab.url, baseUrl);
 
     if (turbineEnv) {
-      console.log('Turbine environment detected:', turbineEnv);
       storage.addEnvironment(turbineEnv);
     }
   }
@@ -26,7 +25,6 @@ chrome.tabs.onActivated.addListener(async (activeInfo) => {
     const turbineEnv = parseTurbineUrl(tab.url, baseUrl);
 
     if (turbineEnv) {
-      console.log('Turbine environment activated:', turbineEnv);
       storage.addEnvironment(turbineEnv);
     }
   }
@@ -36,20 +34,15 @@ chrome.tabs.onActivated.addListener(async (activeInfo) => {
 chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
   if (message.type === 'COMPONENT_DATA') {
     const deployments = message.payload as ComponentDeployment[];
-    console.log('[Turbine Navigator] Received component data:', deployments.length, 'components');
 
     componentStorage.saveComponentDeployments(deployments)
       .then(() => {
-        console.log('[Turbine Navigator] Component data saved successfully');
         sendResponse({ success: true });
       })
       .catch((error) => {
-        console.error('[Turbine Navigator] Error saving component data:', error);
         sendResponse({ success: false, error: error.message });
       });
 
     return true; // Keep the message channel open for async response
   }
 });
-
-console.log('Turbine Navigator background service worker loaded');

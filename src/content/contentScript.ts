@@ -3,11 +3,8 @@ import { ComponentDeployment, Environment } from '../types';
 let debounceTimer: number | null = null;
 
 function extractComponentData(): ComponentDeployment[] {
-  console.log('[Turbine Navigator] Extracting component data from DOM');
-
   // Check if we're on a deployments page
   if (!window.location.pathname.includes('/environments/') || !window.location.pathname.includes('/view/DEPLOYMENTS')) {
-    console.log('[Turbine Navigator] Not on a deployments page, skipping extraction');
     return [];
   }
 
@@ -15,7 +12,6 @@ function extractComponentData(): ComponentDeployment[] {
   // Pattern: /environments/{namespace}/...
   const match = window.location.pathname.match(/\/environments\/([^\/]+)/);
   if (!match) {
-    console.log('[Turbine Navigator] Could not extract namespace from URL');
     return [];
   }
 
@@ -26,8 +22,6 @@ function extractComponentData(): ComponentDeployment[] {
   // Extract environment from namespace
   const envMatch = fullNamespace.match(/-(dev|sit|uat1|qa|prep|prod)$/i);
   const environment = (envMatch ? envMatch[1].toLowerCase() : 'unknown') as Environment;
-
-  console.log(`[Turbine Navigator] Namespace: ${namespace}, Environment: ${environment}`);
 
   // Find all deployment panes
   const deploymentPanes = document.querySelectorAll('turbine-deployment-pane');
@@ -62,11 +56,10 @@ function extractComponentData(): ComponentDeployment[] {
         lastUpdated: Date.now(),
       });
     } catch (error) {
-      console.error('[Turbine Navigator] Error extracting component data:', error);
+      // Silently handle extraction errors
     }
   });
 
-  console.log(`[Turbine Navigator] Extracted ${deployments.length} components`);
   return deployments;
 }
 
@@ -76,8 +69,8 @@ function sendDataToBackground(deployments: ComponentDeployment[]): void {
   chrome.runtime.sendMessage({
     type: 'COMPONENT_DATA',
     payload: deployments,
-  }).catch((error) => {
-    console.error('[Turbine Navigator] Error sending data to background:', error);
+  }).catch(() => {
+    // Silently handle messaging errors
   });
 }
 
@@ -115,7 +108,6 @@ const observer = new MutationObserver((mutations) => {
   });
 
   if (hasRelevantChanges) {
-    console.log('[Turbine Navigator] DOM changed, re-extracting component data');
     debouncedExtractAndSend();
   }
 });
@@ -128,7 +120,6 @@ if (deploymentsWrapper) {
     subtree: true,
     attributes: false,
   });
-  console.log('[Turbine Navigator] MutationObserver started');
 } else {
   // If wrapper not found yet, wait and try again
   setTimeout(() => {
@@ -139,9 +130,6 @@ if (deploymentsWrapper) {
         subtree: true,
         attributes: false,
       });
-      console.log('[Turbine Navigator] MutationObserver started (delayed)');
     }
   }, 2000);
 }
-
-console.log('[Turbine Navigator] Content script loaded');

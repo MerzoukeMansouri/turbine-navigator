@@ -16,7 +16,6 @@ const Options: React.FC = () => {
       const currentSettings = await settings.getSettings();
       setBaseUrl(currentSettings.baseUrl);
     } catch (error) {
-      console.error('Failed to load settings:', error);
       setBaseUrl(DEFAULT_BASE_URL);
     } finally {
       setLoading(false);
@@ -31,7 +30,7 @@ const Options: React.FC = () => {
       setSaved(true);
       setTimeout(() => setSaved(false), 2000);
     } catch (error) {
-      console.error('Failed to save settings:', error);
+      // Silently handle errors
     }
   };
 

@@ -54,7 +54,7 @@ const ComponentsMatrix: React.FC = () => {
       setNamespaceData(namespaces);
       setLastUpdate(new Date());
     } catch (error) {
-      console.error('Failed to load component data:', error);
+      // Silently handle errors
     } finally {
       setLoading(false);
     }
@@ -67,7 +67,6 @@ const ComponentsMatrix: React.FC = () => {
     // Listen for storage changes
     const handleStorageChange = (changes: { [key: string]: chrome.storage.StorageChange }) => {
       if (changes.turbine_component_deployments) {
-        console.log('Component data updated, reloading...');
         loadData();
       }
     };
@@ -126,7 +125,7 @@ const ComponentsMatrix: React.FC = () => {
         setVisibleEnvs(new Set(storedEnvs));
       }
     } catch (error) {
-      console.error('Failed to load visible environments:', error);
+      // Silently handle errors
     }
   };
 
@@ -136,7 +135,7 @@ const ComponentsMatrix: React.FC = () => {
         [VISIBLE_ENVIRONMENTS_KEY]: Array.from(envs),
       });
     } catch (error) {
-      console.error('Failed to save visible environments:', error);
+      // Silently handle errors
     }
   };
 

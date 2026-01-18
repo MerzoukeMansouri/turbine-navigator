@@ -27,7 +27,7 @@ const Popup: React.FC = () => {
       setIsConfigured(configured);
       setUrlInput(url);
     } catch (error) {
-      console.error('Failed to load data:', error);
+      // Silently handle errors
     } finally {
       setLoading(false);
     }
@@ -47,7 +47,7 @@ const Popup: React.FC = () => {
       const envs = await storage.getRecentEnvironments();
       setEnvironments(envs);
     } catch (error) {
-      console.error('Failed to load environments:', error);
+      // Silently handle errors
     }
   };
 

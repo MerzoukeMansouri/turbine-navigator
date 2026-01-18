@@ -51,7 +51,6 @@ export function parseTurbineUrl(url: string, baseUrl: string): TurbineEnvironmen
       qaUat1Preference,
     };
   } catch (error) {
-    console.error('Failed to parse Turbine URL:', error);
     return null;
   }
 }
